@@ -1,18 +1,26 @@
-import React, {useEffect, useState} from 'react'
+import React, {useRef, useState} from 'react'
 
 const alpUpper = new Array( 26 ).fill( 1 ).map( ( _, i ) => String.fromCharCode( 65 + i ) )
 
 const alpLower = new Array( 26 ).fill( 1 ).map( ( _, i ) => String.fromCharCode( 97 + i ) )
 
-const char = [...alpUpper, ...alpLower]
+const alpNumber = Array.from('1234567890')
+
+const alpSymbol = Array.from(`!@#$%^&*()_-+={[]}:;'"<,>.?/|`)
+
+const char = [...alpUpper, ...alpLower, ...alpNumber, ...alpSymbol]
 
 const emoUpper = Array.from("🤣😌😛😕😢🥵🤗🤥😯😪🤧😷😮😦😶🤔🥶😭🙁🤩😝😍🤤😃😷🤕")
 
 const emoLower = Array.from("🥰😜🥳😤😠😣😏🤪😘😊😁😆😇😗🤨😒😖😡😨😲🤐🤑🤢🤮😴😵")
 
+const emoNumber= Array.from("🐶🐱🐭🐹🐰🦊🐻🐼🐨🐯")
+
+const emoSymbol = Array.from("🍏🍎🍐🍊🍋🍌🍉🍇🍓🍈🍒🍑🥭🍍🥥🥝🍅🍆🥑🥦🥬🥒🌶🧄🧅🥔🍠🥐🥯")
+
 const emoSpace = Array.from("🤬🤫😀")
   
-const emoji = [...emoUpper, ...emoLower]
+const emoji = [...emoUpper, ...emoLower, ...emoNumber, ...emoSymbol]
   
 const TYPES = Object.freeze({
   transform: {
@@ -22,6 +30,7 @@ const TYPES = Object.freeze({
 })
 
 const App = () => {
+  const outputRef = useRef(null)
   const [textInput, setTextInput] = useState('')
   const [passkey, setPasskey] = useState('')
   const [textOutput, setTextOutput] = useState('')
@@ -33,7 +42,7 @@ const App = () => {
   }
 
   const generateTextmoji = () => {
-    let key = (passkey % (26 * 2)) ?? 0
+    let key = (passkey % (char.length + 1)) ?? 0
     const text = textInput.split('')
     const charArray = char.slice()
     const newChar = [...charArray.splice(key), ...charArray.splice(0, key)]
@@ -51,7 +60,7 @@ const App = () => {
   }
 
   const generateText = () => {
-    let key = (passkey % (26 * 2)) ?? 0
+    let key = (passkey % (char.length + 1)) ?? 0
     const text = [...textInput]
     const charArray = char.slice()
     const newChar = [...charArray.splice(key), ...charArray.splice(0, key)]
@@ -114,10 +123,18 @@ const App = () => {
         onClick={() => transform(activeTextArea === TYPES.transform.char ? TYPES.transform.char : TYPES.transform.emoji)}
         className='mt-10 font-sans font-semibold bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded w-40 self-center'
         >{activeTextArea === TYPES.transform.char ? 'Encrypt' : 'Decrypt'}</button>
+      <button 
+        className='mt-5 self-end mx-64 font-sans font-semibold bg-white hover:bg-gray-200 text-gray-700 border py-2 px-4 rounded w-20'
+        onClick={ () => {
+          const outputText = outputRef?.current?.value;
+          navigator?.clipboard?.writeText(outputText)
+        }
+      }>Copy!</button>
       <textarea
+        ref={outputRef}
         value={textOutput}
         disabled={true}
-        className='flex justify-center h-72 mt-10 mx-64 p-5 rounded-md'
+        className='flex justify-center h-72 mx-64 p-5 rounded-md mt-2'
       />
       <label className='mt-10 text-white font-mono underline text-sm font-light self-center'>madbow | © 2022</label>
     </div>
