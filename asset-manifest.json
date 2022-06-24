@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/textmoji/static/css/main.2ba30e15.css",
-    "main.js": "/textmoji/static/js/main.7169d6f0.js",
+    "main.css": "/textmoji/static/css/main.a82c1168.css",
+    "main.js": "/textmoji/static/js/main.bfe86c23.js",
     "index.html": "/textmoji/index.html",
-    "main.2ba30e15.css.map": "/textmoji/static/css/main.2ba30e15.css.map",
-    "main.7169d6f0.js.map": "/textmoji/static/js/main.7169d6f0.js.map"
+    "main.a82c1168.css.map": "/textmoji/static/css/main.a82c1168.css.map",
+    "main.bfe86c23.js.map": "/textmoji/static/js/main.bfe86c23.js.map"
   },
   "entrypoints": [
-    "static/css/main.2ba30e15.css",
-    "static/js/main.7169d6f0.js"
+    "static/css/main.a82c1168.css",
+    "static/js/main.bfe86c23.js"
   ]
 }
