@@ -64,7 +64,6 @@ const App = () => {
     const text = [...textInput]
     const charArray = char.slice()
     const newChar = [...charArray.splice(key), ...charArray.splice(0, key)]
-
     let arr = []
     text.forEach(e => {
       let i
