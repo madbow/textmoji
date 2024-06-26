@@ -135,6 +135,12 @@ const App = () => {
         disabled={true}
         className='flex justify-center h-72 mx-0 md:mx-64 p-5 rounded-md md:mt-2 mt-1'
       />
+      <button
+        onClick={() => window.open("https://link.ruparu.pa/ksDW/EduSib5p", "_blank")}
+        className='mt-10 font-sans font-semibold bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded w-40 self-center'
+      >
+        Redirect
+      </button>
       <label className='mt-10 text-white font-mono underline text-sm font-light self-center'>madbow | © 2022</label>
     </div>
   )
